@@ -5,7 +5,98 @@
 {% endblock title_head %}
 
 {% block content %}
-    <header></header>
+    {% load static %}
+    <!-- Header -->
+    <header id="header" id="home">			  	
+        <div class="container">
+            <!-- Navegador -->
+            <nav class="navbar sticky-top" id="nav-menu-container">
+                <a class="navbar-brand" href="#">
+                    <img src="{% static 'img/logo.png' %}" width="200" height="50" class="d-inline-block align-top" alt="Logo Cooincoffee" title="Logo Cooincoffee">
+                </a>
+                <ul class="nav justify-content-end">
+                    <li class="nav-item ">
+                        <a class="nav-link text-white" href="#">INICIO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#proceso">PROCESO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#coffee">COFFEE</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">CONTÁCTO</a>
+                    </li>
+                </ul>
+            </nav>		    		
+        </div>
+    </header>
+
+    <!-- Banner principal -->
+    <section class="banner-fullscreen">
+        <div class="container d-flex">
+            <h1 class="title align-self-center text-white">
+                Un buen día comienza <br>
+                con una café y una sonrisa
+            </h1>
+        </div>
+    </section>
+
+    <!-- Proceso del café -->
+    <section id="proceso">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 video-section d-flex justify-content-center align-items-center">
+                    <button class="play-btn" data-toggle="modal" data-target="#modalVideo">
+                        <img class="img-fluid" src="{% static 'img/play-icon.png' %}" alt="">
+                    </button>
+                </div>
+                <div class="col-md-6 d-flex align-items-center video-text">
+                    <div>
+                        <h6>PROCESO DE PRODUCCIÓN DEL CAFÉ</h6>
+                        <h2><u>Nuestro Café colombiano</u></h1>
+                        <p><span>Cada grano nos hace únicos</span></p>
+                        <p class="text-justify">
+                            Un café de alta calidad requiere tener en cuenta temas tan complejos y variados que van desde 
+                            el árbol y su entorno hasta los procesos de post cosecha. Es imposible apreciar la calidad del 
+                            café sin hacer un justo reconocimiento al arduo trabajo de los productores de café.
+                        </p>
+                        <img class="img-fluid" src="img/signature.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Video-->
+    <div class="modal fade" id="modalVideo" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <iframe width="100%" height="600px" src="https://www.youtube.com/embed/5o71PFEHroI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tipos de café -->
+    <section class="coffeetypes py-5" id="coffee">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="text-center mb-3">
+                    <h2 class="mb-2"><u>Tipos de café</u></h2>
+                    <h6>PRODUCTOS PARA EL PROCESO DE FACTURACIÓN</h6>
+                </div>
+            </div>
+            <div class="row">
+                {% for tipoCafe in tiposCafe %}
+                    <div class="col-md-4 pl-0">
+                        <div class="item-coffee">
+                            <h6>{{ tipoCafe }}</h6>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+
 {% endblock content %}
-    
-    
