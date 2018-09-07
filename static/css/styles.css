@@ -1,0 +1,17 @@
+.navbar{
+    min-height: 10vh;
+}
+
+.navbar, .subtitle{
+    font-family: "PT Sans Narrow";
+}
+
+.content{
+    position: relative;
+    min-height: 70vh;
+    height: 600px;
+}
+
+footer {
+    min-height: 20vh;
+}
