@@ -1,12 +1,13 @@
-from apps.facturacion.models import TipoCafe
+from apps.facturacion.models import TipoCafe, Cooperativa
 
 def tiposCafe(request):
     listTiposCafe = TipoCafe.objects.all()
-    context = {}
-    lista = []
+    context = { 'listTiposCafe' : listTiposCafe }
 
-    for tipoCafe in listTiposCafe:
-        lista.append(tipoCafe.nombre)
+    return context
 
-    context['tiposCafe'] = lista
+def cooperativas(request):
+    listCooperativas = Cooperativa.objects.all()
+    context = {'listCooperativas' : listCooperativas}
+
     return context

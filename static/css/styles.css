@@ -7,6 +7,9 @@
 3. Banner
 4. Section (Proceso)
 5. Section (Coffee)
+6. Section (Nuestra Cooperativa)
+7. Section (Contácto)
+8. Footer Web
 */
 
 
@@ -66,6 +69,7 @@ h6 {
     background-size: cover;
     height: 350px;
     border-radius: 5px;
+    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
 }
 
 .video-text{
@@ -85,10 +89,67 @@ h6 {
 
 .item-coffee{
     background-color: #fff;
-    box-shadow: 0px 10px 30px 0px rgba(182, 136, 52, 0.2);
+    box-shadow: 0px 5px 15px 0px rgba(182, 136, 52, 0.2);
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 20px;
     text-align: center;
     user-select: none;
+}
+
+/* 6. Section (Nuestra Cooperativa) */
+.img-nuestra-cooperativa{
+    width: 200px;
+    height: 200px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.aliados{
+    background-color: #b68834;
+    color: #fff;
+}
+
+.items-aliados .item{
+    display: flex !important;
+    justify-content: center !important;
+    height: 100px;
+    padding: 1em;
+}
+
+.items-aliados .item img{
+    height: 100%;
+}
+
+/* 7. Section (Contácto) */
+.msg-contact{
+    resize: none;
+}
+
+.btn-enviar{
+    background-color: #b68834;
+    color: #fff;
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+/* 8. Footer Web */
+.footer-web{
+    width: 100%;
+    min-height: 260px;
+    background-image: url(../img/coffee.png);
+    background-size: cover;
+    color: #fff;
+}
+
+.footer-web hr{
+    background-color: #fff;
+}
+
+.item-footer{
+    text-align: center;
+}
+
+.item-footer i{
+    font-size: 3em;
+    padding-bottom: 5px;
 }

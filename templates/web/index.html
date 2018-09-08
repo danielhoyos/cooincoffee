@@ -22,7 +22,10 @@
                         <a class="nav-link text-white" href="#proceso">PROCESO</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#coffee">COFFEE</a>
+                        <a class="nav-link text-white" href="#coffee">CÁFE</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#nosotros">NOSOTROS</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#">CONTÁCTO</a>
@@ -46,7 +49,7 @@
     <section id="proceso">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 video-section d-flex justify-content-center align-items-center">
+                <div class="col-md-6 video-section d-flex justify-content-center align-items-center mb-3">
                     <button class="play-btn" data-toggle="modal" data-target="#modalVideo">
                         <img class="img-fluid" src="{% static 'img/play-icon.png' %}" alt="">
                     </button>
@@ -61,7 +64,6 @@
                             el árbol y su entorno hasta los procesos de post cosecha. Es imposible apreciar la calidad del 
                             café sin hacer un justo reconocimiento al arduo trabajo de los productores de café.
                         </p>
-                        <img class="img-fluid" src="img/signature.png" alt="">
                     </div>
                 </div>
             </div>
@@ -80,17 +82,15 @@
     <!-- Tipos de café -->
     <section class="coffeetypes py-5" id="coffee">
         <div class="container">
-            <div class="row d-flex justify-content-center">
-                <div class="text-center mb-3">
-                    <h2 class="mb-2"><u>Tipos de café</u></h2>
-                    <h6>PRODUCTOS PARA EL PROCESO DE FACTURACIÓN</h6>
-                </div>
+            <div class="text-center mb-4">
+                <h2 class="mb-2"><u>Tipos de café</u></h2>
+                <h6>PRODUCTOS PARA EL PROCESO DE FACTURACIÓN</h6>
             </div>
             <div class="row">
-                {% for tipoCafe in tiposCafe %}
+                {% for tipoCafe in listTiposCafe %}
                     <div class="col-md-4 pl-0">
                         <div class="item-coffee">
-                            <h6>{{ tipoCafe }}</h6>
+                            <h6>{{ tipoCafe.nombre }}</h6>
                         </div>
                     </div>
                 {% endfor %}
@@ -98,5 +98,122 @@
         </div>
     </section>
 
+    <!-- Nosotros -->
+    <section id="nosotros">
+        <div class="container">
+            <div class="text-center mb-3">
+                <h2><u>Nuestra Cooperativa</u></h2>
+            </div>
+            <div class="row">
+                <div class="col-md-9 text-justify px-0">
+                    <p><b>Aportamos al desarrollo sostenible de nuestro país, creando valor en todas nuestras relaciones. </b></p>
+                    
+                    <p>Nuestro objetivo es brindar soluciones que facilitan la gestión en la facturación de compra y venta de café de los caficultores 
+                    y cooperativas de colombia, cubriendo sus necesidades y superando sus expectativas, respaldados de nuestro compromiso y talento 
+                    humano.</p>
 
+                    <div class="pt-2 text-right">
+                        <h4><i>"Asumimos el reto de ser mejores cada día."</i></h4>
+                        <h6>Andrés Gonzales - Gerente</h6>
+                    </div>
+                </div>
+                <div class="col-md-3 d-flex justify-content-end">
+                    <img class="img-nuestra-cooperativa" src="{% static 'img/nuestra-coopetativa.jpg' %}" alt="Nuestra Coopetativa cooincoffee">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Aliados -->
+    <section class="aliados py-5" id="aliados">
+        <div class="container">
+            <div class="text-center mb-3">
+                <h2><u>Ellos confían en nosotros</u></h2>
+            </div>
+            <div class="items-aliados">
+
+                {% for cooperativa in listCooperativas %}
+                    {% if cooperativa.logo and cooperativa.estado %}
+                        <div class="item">
+                            <img src="/media/{{ cooperativa.logo }}" alt="{{ cooperativa.nombre }}" title="{{ cooperativa.nombre }}">
+                        </div>
+                    {% endif %}
+                 {% endfor %}
+                 
+            </div>
+        </div>
+    </section>
+
+    <!-- Contácto -->
+    <section id="contacto">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2><u>Contáctenos</u></h2>
+            </div>
+
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6 text-right">
+                        <input id="nombre" name="nombre" class="form-control" type="text" placeholder="Nombre"><br>
+                        <input id="email" name="email" class="form-control" type="email" placeholder="E-mail"><br>
+                        <textarea id="mensaje" class="form-control msg-contact" rows="4" placeholder="Mensaje" maxlength="180"></textarea><br>
+                        <input type="submit" class="btn btn-enviar text-ce" value="Enviar">
+                    </div>
+                    <div class="col-md-6" id="map">
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-web">
+        <div class="container">
+            <div class="row pt-5">
+                <div class="col-md-4 item-footer">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h5>UBICACIÓN</h5>
+                    <p>
+                        Torre D Apto. 105 Torres del Río<br>
+                        Popayán, Cauca
+                    </p>
+                </div>
+                <div class="col-md-4 item-footer">
+                    <i class="fas fa-phone-volume"></i>
+                    <h5>CONTACTOS</h5>
+                    <p>
+                        contacto@cooincoffee.com<br>
+                        +57 350 895 7850
+                    </p>
+                </div>
+                <div class="col-md-4 item-footer">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h5>HORARIOS</h5>
+                    <p>
+                        Lunes a viernes: 8am - 12m / 2pm - 6pm<br>
+                        Sábados: 8am - 12m
+                    </p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col md-6">
+                    <a href="https://www.facebook.com/" target="blank" class="text-white mr-3">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=contacto@cooincoffee.com&su=Contácto%20Cooincoffe&body=Cordial%20Saludo&b" target="blank" class="text-white mr-3">
+                        <i class="fab fa-google"></i>
+                    </a>
+                    <a href="https://api.whatsapp.com/send?phone=573508957850" target="blank" class="text-white mr-3">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+                <div class="col md-6 text-right">
+                    © 2018 Cooincoffee - All Rights Reserved <a href="https://www.linkedin.com/in/daniel-hoyos-1a7396159/" target="blank" class="text-danger">Daniel Hoyos</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 {% endblock content %}
