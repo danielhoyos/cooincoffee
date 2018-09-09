@@ -155,10 +155,9 @@
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-md-6 text-right">
-                        <input id="nombre" name="nombre" class="form-control" type="text" placeholder="Nombre"><br>
-                        <input id="email" name="email" class="form-control" type="email" placeholder="E-mail"><br>
-                        <textarea id="mensaje" class="form-control msg-contact" rows="4" placeholder="Mensaje" maxlength="180"></textarea><br>
-                        <input type="submit" class="btn btn-enviar text-ce" value="Enviar">
+                        {{ formulario }}
+                        
+                        <input type="submit" class="btn btn-enviar" value="Enviar">
                     </div>
                     <div class="col-md-6" id="map">
 

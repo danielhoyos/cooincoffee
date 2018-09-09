@@ -1,0 +1,16 @@
+body{
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+}
+
+.content-login{
+    width: 100%;
+    height: 100vh;
+    background-image: url(../img/background-login.jpg);
+    background-size: cover;
+}
+
+.icon-login{
+    font-size: 5em;
+    color: #fff;
+}
