@@ -6,8 +6,79 @@
 
 {% block content %}
     <div class="mb-4">
-        <h2 class="mb-2 title_brown">
-            <i class="far fa-building"></i> <u>Cooperativas</u>
-        </h2>
+        <div class="row px-3">
+            <h2 class="mb-2 title_brown">
+                <i class="far fa-building"></i> <u>Cooperativas</u>
+            </h2>
+    
+            <!-- Agregar Cooperativa -->
+            {% if request.user.is_superuser %}
+                <button type="button" class="btn btn-danger ml-auto" data-toggle="modal" data-target="#agregar-cooperativa">
+                    <i class="fas fa-plus-circle"></i> Agregar
+                </button>
+            {% endif %}
+        </div>
+    </div>
+
+    <table class="table border table-striped">
+        <thead class="bg-cooincoffee">
+          <tr>
+            <th scope="col">Nit</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">Teléfono</th>
+            {% if request.user.is_superuser %}
+                <th scope="col"></th>
+            {% endif%}
+          </tr>
+        </thead>
+        <tbody>
+            {% for cooperativa in lista_cooperativas %}
+                <tr>
+                    <td>{{ cooperativa.nit }}</td>
+                    <td>{{ cooperativa.nombre }}</td>
+                    <td>{{ cooperativa.direccion }}</td>
+                    <td>
+                        {% if cooperativa.telefono %}
+                            {{ cooperativa.telefono }}  
+                        {% endif %}
+                    </td>
+                    {% if request.user.is_superuser %}
+                        <td class="text-center"><a class="btn-sm btn-info text-white" href="{% url 'cooperativa_editar' id_cooperativa=cooperativa.id %}"><i class="far fa-file-alt"></i></a></td> 
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Modal Agregar Cooperativa -->
+    <div class="modal fade" id="agregar-cooperativa" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title ml-auto">Agregar Cooperativa</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        {% for field in form_agregar_cooperativa %}
+                            <div class="form-group row">
+                                <label for="{{ field.id_for_label }}" class="col-sm-2 col-form-label">{{ field.label }}:</label>
+                                <div class="col-sm-10">
+                                    {{ field }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <div class="text-right">
+                            <input class="btn btn-danger" type="submit" value="Registrar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock content %}

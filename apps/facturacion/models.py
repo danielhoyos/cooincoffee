@@ -7,7 +7,7 @@ class Cooperativa(models.Model):
     nombre      = models.CharField(max_length = 50)
     ciudad      = models.CharField(max_length = 20)
     direccion   = models.CharField(max_length = 100)
-    telefono    = models.CharField(max_length = 15, null = True, blank = True)
+    telefono    = models.IntegerField(null = True, blank = True)
     logo        = models.ImageField(upload_to = "cooperativas", null = True, blank = True)
     estado      = models.BooleanField(default = True)
 

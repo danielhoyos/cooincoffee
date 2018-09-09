@@ -1,62 +1,70 @@
-::-webkit-scrollbar-track{
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     border-radius: 3px !important;
     background-color: #e8e8e7;
 }
-::-webkit-scrollbar{
+
+::-webkit-scrollbar {
     width: 8px;
     border-radius: 3px !important;
 }
 
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
     border-radius: 3px !important;
     background-color: #7a3538;
-    background-image: -webkit-linear-gradient(90deg,transparent, rgba(0, 0, 0, 0.3) 50%, transparent, transparent)
-}
-::-webkit-scrollbar-corner {
-      background-color: black;
+    background-image: -webkit-linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.3) 50%, transparent, transparent)
 }
 
-body{
+::-webkit-scrollbar-corner {
+    background-color: black;
+}
+
+body {
     font-family: "Poppins", sans-serif;
     font-weight: 300;
 }
 
-.content{
+.bg-cooincoffee {
+    background-color: #7a3538;
+    color: #fff;
+}
+
+.content {
     width: 100%;
     height: 100vh;
 }
 
-.content-login{
+.content-login {
     background-image: url(../img/background-login.jpg);
     background-size: cover;
 }
 
-.icon-login{
+.icon-login {
     font-size: 5em;
     color: #fff;
 }
 
-.menu-system{
+.menu-system {
     position: relative;
     background-image: url(../img/menu-system.jpg);
     background-repeat: repeat;
     overflow: hidden;
 }
 
-.menu-system .logo{
+.menu-system .logo {
     position: relative;
     width: 100%;
     padding: 1em;
 }
 
-.menu-system .user-logo{
+.menu-system .user-logo {
     padding: 0;
     text-align: center;
     color: #fff
 }
 
-.menu-system .user-logo i, .menu-system .user-logo img{
+.menu-system .user-logo i,
+.menu-system .user-logo img {
     position: relative;
     width: 80px;
     height: 80px;
@@ -64,7 +72,7 @@ body{
     border-radius: 5px;
 }
 
-.menu-system .user-logo i{
+.menu-system .user-logo i {
     padding: 15px;
     text-align: center;
     line-height: 100%;
@@ -72,35 +80,40 @@ body{
     border: 2px solid #fff;
 }
 
-.menu-system .user-logo img{
+.menu-system .user-logo img {
     padding: 0;
 }
 
-.menu-system nav ul li{
+.menu-system nav ul li {
     width: 100%;
     color: #fff;
 }
 
-.menu-system nav a{
+.menu-system nav a {
     color: #fff;
 }
 
-.line-item-nav{
+.line-item-nav {
     width: 0;
     height: 2px;
     background: #fff;
     transition: 1s ease width;
 }
 
-.menu-system nav li:hover .line-item-nav{
+.menu-system nav li:hover .line-item-nav {
     width: 100% !important;
 }
 
-.content-system{
+.content-system {
     padding: 2em;
     overflow-y: auto;
 }
 
-.content-system .title_brown{
+.content-system .title_brown {
     color: #5b3924;
+}
+
+.content-system .logo-cooperativa {
+    height: 60px;
+    background-size: cover;
 }

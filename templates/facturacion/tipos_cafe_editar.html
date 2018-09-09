@@ -1,0 +1,35 @@
+{% extends '../base_system.html' %}
+
+{% block title_head %}
+    Tipos de Café | Cooincoffe    
+{% endblock title_head %}
+
+{% block content %}
+    <div class="mb-4">
+        <div class="row px-3">
+            <h2 class="mb-2 title_brown">
+                <i class="fas fa-coffee"></i>
+                Tipo Café: {{ tipo_cafe.nombre }}
+            </h2>
+        </div>
+        <br>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            {% for field in form_editar_tipo_cafe %}
+                <div class="form-group row">
+                    <label for="{{ field.id_for_label }}" class="col-sm-2 col-form-label">{{ field.label }}:</label>
+                    <div class="col-sm-10">
+                        {{ field }}
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="text-right">
+                <a class="btn btn-info text-white" href="{% url 'tipos_cafe' %}"><i class="fas fa-undo-alt"></i> Volver</a>
+                <button type="submit" class="btn btn-danger">
+                    <i class="far fa-edit"></i> Editar</a>
+                </button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

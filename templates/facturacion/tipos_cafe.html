@@ -6,8 +6,67 @@
 
 {% block content %}
     <div class="mb-4">
-        <h2 class="mb-2 title_brown">
-            <i class="fas fa-coffee"></i> <u>Tipos de Café</u>
-        </h2>
+        <div class="row px-3">
+            <h2 class="mb-2 title_brown">
+                <i class="fas fa-users"></i> <u>Tipos de Cafe</u>
+            </h2>
+    
+            <!-- Agregar Tipo Cafe -->
+            <button type="button" class="btn btn-danger ml-auto" data-toggle="modal" data-target="#agregar-tipo-cafe">
+                <i class="fas fa-plus-circle"></i> Agregar
+            </button>
+        </div>
     </div>
+
+    <table class="table table-striped border">
+        <thead class="bg-cooincoffee">
+            <tr>
+                <th scope="col-md-10">Nombre</th>
+                <th scope="col-md-2"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tipo_cafe in lista_tipos_cafe %}
+                <tr>
+                    <td>
+                        {{ tipo_cafe.nombre }}
+                    </td>
+                    <td class="table-bordered-none text-right">
+                        <a class="btn-sm btn-info text-white" href="{% url 'tipo_cafe_editar' id_tipo_cafe=tipo_cafe.id %}"><i class="far fa-file-alt"></i></a>
+                        <a class="btn-sm btn-danger text-white" href="{% url 'tipo_cafe_eliminar' id_tipo_cafe=tipo_cafe.id %}"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Modal Agregar Asociado -->
+    <div class="modal fade" id="agregar-tipo-cafe" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title ml-auto">Agregar Tipo Café</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        
+                        {% for field in form_agregar_tipo_cafe %}
+                            <div class="form-group row">
+                                <label for="{{ field.id_for_label }}" class="col-sm-2 col-form-label">{{ field.label }}:</label>
+                                <div class="col-sm-10">
+                                    {{ field }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <div class="text-right">
+                            <input class="btn btn-danger" type="submit" value="Registrar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 {% endblock content %}
