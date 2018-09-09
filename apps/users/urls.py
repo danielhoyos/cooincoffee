@@ -1,10 +1,10 @@
-from django.urls import path
+from django.urls import path, include
 from .views import *
-from apps.facturacion.views import *
-from apps.recordatorios.views import *
 
 urlpatterns = [
-    path('', recordatorios_view, name = "recordatorios"),
     path('login/', login_view, name = "login"),
     path('logout/', logout_view, name = "logout"),
+    path('perfil/', perfil_view, name = "perfil"),
+    path('', include("apps.facturacion.urls")),
+    path('recordatorios/', include("apps.recordatorios.urls")),
 ]

@@ -22,15 +22,70 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
     <!-- Styles -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles-system.css' %}">
 </head>
 <body>
     <div class="content">
-        {% block content %}
-        {% endblock content %}
+        <div class="container-fluid h-100">
+            <div class="row h-100">
+                <aside class="col-lg-2 menu-system">
+                    <img src="{% static 'img/logo.png' %}" class="logo" alt="Logo Cooincoffe" title="Logo Cooincoffe">
+
+                    <div class="user-logo">
+                        <i class="fas fa-user"></i>
+                        {% comment %} <img src="/media/usuarios/{{ user.img }}" class="logo" alt="Logo Cooincoffe" title="Logo Cooincoffe"> {% endcomment %}
+                        
+                        <p class="m-auto">Angie Jenoy<p>
+                        <small class="mx-auto">Secretaria</small>
+                    </div>
+                    <hr class="bg-light">
+                    <nav>
+                        <ul class="nav">
+                            <li>
+                                <a href="{% url 'facturacion' %}" class="navbar-brand"> <i class="fas fa-file-invoice"></i> Facturación</a>
+                                <div class="line-item-nav"></div>
+                            </li>
+                            <li>
+                                <a href="{% url 'cooperativas' %}" class="navbar-brand"><i class="far fa-building"></i> Coopetativas</a>
+                                <div class="line-item-nav"></div>
+                            </li>
+                            <li>
+                                <a href="{% url 'asociados' %}" class="navbar-brand"><i class="fas fa-users"></i> Asociados</a>
+                                <div class="line-item-nav"></div>
+                            </li>
+                            <li>
+                                <a href="{% url 'tipos_cafe' %}" class="navbar-brand"><i class="fas fa-coffee"></i> Tipos de Café</a>
+                                <div class="line-item-nav"></div>
+                            </li>
+                            <li>
+                                <a href="{% url 'reportes' %}" class="navbar-brand"><i class="fas fa-file-invoice-dollar"></i> Reportes</a>
+                                <div class="line-item-nav"></div>
+                            </li>
+                            <li>
+                                <a href="{% url 'recordatorios' %}" class="navbar-brand"><i class="far fa-sticky-note"></i> Recordatorios</a>
+                                <div class="line-item-nav"></div>
+                            </li>
+                            <li>
+                                <a href="{% url 'perfil' %}" class="navbar-brand"><i class="far fa-user"></i> Mi perfil</a>
+                                <div class="line-item-nav"></div>
+                            </li>
+                            <li>
+                                <a href="{% url 'logout' %}" class="navbar-brand"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+                                <div class="line-item-nav"></div>    
+                            </li>
+                        </ul>
+                    </nav>
+                </aside>
+                <section class="col-lg-10 content-system">
+                    {% block content %}
+                    {% endblock content %}      
+                </section>
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->

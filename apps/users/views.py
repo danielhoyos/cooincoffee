@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
+
 from .forms import *
 
 # Create your views here.
@@ -17,6 +19,7 @@ def login_view(request):
 
                 if usuario is not None and usuario.is_active:
                     login(request, usuario)
+                    return redirect('/system/')
                 else:
                     msg = 'El usuario o la contraseña son incorrectos.'
         else:
@@ -24,6 +27,11 @@ def login_view(request):
 
     return render(request, 'users/login.html', locals())
 
+@login_required(login_url = '/system/login/')
+def perfil_view(request):
+    return render(request, 'users/perfil.html', locals())
+
+@login_required(login_url = '/system/login/')
 def logout_view(request):
     logout(request)
-    return redirect('/system/login/')
+    return redirect('/system/')
