@@ -39,3 +39,29 @@ class agregar_tipo_cafe_form(forms.ModelForm):
         widgets = {
             'nombre' : forms.TextInput(attrs = { 'class' : 'form-control' }),
         }
+
+class factura_form(forms.ModelForm):
+    class Meta: 
+        model   = Factura
+        fields  = ('codigo', 'cooperativa', 'fechaRegistro')
+        widgets = {
+            'codigo' : forms.TextInput(attrs = { 'class' : 'text-center', 'size' : '10', 'placeholder' : 'A1-000', 'id' : 'codigo-factura'}),
+            'cooperativa' : forms.Select(attrs = { 'class' : 'form-control' }),
+            'fechaRegistro' : forms.TextInput(attrs = { 'class' : 'form-control', 'type' : 'date'})
+        }
+        labels = {
+            'fechaRegistro' : 'Fecha'
+        }
+
+class detalle_factura_form(forms.ModelForm):
+    class Meta:
+        model   = DetalleFactura
+        fields  = '__all__'
+        exclude = ['idFactura']
+        widgets = {
+            'cantidad'  : forms.NumberInput(attrs = { 'class' : 'form-control' }),
+            'unidad'    : forms.TextInput(attrs = { 'class' : 'form-control' }),
+            'valorTotal': forms.NumberInput(attrs = { 'class' : 'form-control' }),
+            'idTipoCafe': forms.Select(attrs = { 'class' : 'form-control' }),
+            'idAsociado': forms.Select(attrs = { 'class' : 'form-control' })        
+        }

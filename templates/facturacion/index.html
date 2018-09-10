@@ -10,4 +10,97 @@
             <i class="fas fa-file-invoice"></i> <u>Facturación</u>
         </h2>
     </div>
+
+    <section class="factura p-3">
+        {% load static %}
+        <div class="container">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <!-- Información / Factura -->
+                <div class="row">
+                    <div class="col-md-9 text-center">
+                        <h5>COOPERATIVA INTEGRAL AGRICOLA DE CAFÉ</h5>
+                        <img src="{% static 'img/logo-black.png' %}" alt="">
+                        <h6>
+                            NIT: 900.454.547-1<br>
+                            Torres del Río Bloque D Apto 105 / Tel: 8374769<br>
+                            contacto@cooincoffe.com
+                        </h6>
+                    </div>
+                    <div class="col-md-3 d-flex justify-content-center align-items-center">
+                        <div class="border border-dark rounded">
+                            <div class="bg-cooincoffee p-2 text-center">
+                                Factura No.
+                            </div>
+                            <div>
+                                {{ form_factura.codigo }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Datos Factura -->
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-2 col-form-label">{{ form_factura.cooperativa.label }}: </label>
+                            <div class="col-sm-10">
+                                {{ form_factura.cooperativa }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-2 col-form-label">{{ form_factura.fechaRegistro.label }}: </label>
+                            <div class="col-sm-10">
+                                {{ form_factura.fechaRegistro }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detalle Factura -->
+                <table class="table-sm">
+                    <thead>
+                        <tr class="text-center">
+                            <th>Cantidad</th>
+                            <th>Unidad</th>
+                            <th>Tipo de Café</th>
+                            <th>Asociado</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{ form_detalle_factura.management_form }}
+                        {% for detalle_factura in form_detalle_factura %}
+                            <tr class="detalle">
+                                <td>{{ detalle_factura.cantidad }}</td>
+                                <td>{{ detalle_factura.unidad }}</td>
+                                <td>{{ detalle_factura.idTipoCafe }}</td>
+                                <td>{{ detalle_factura.idAsociado }}</td>
+                                <td>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">$</span>
+                                        </div>
+                                        {{ detalle_factura.valorTotal }}
+                                    </div>
+                                </td>
+                                <td><a class="delete btn btn-danger" href="#"><i class="fas fa-trash"></i></a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <div class="row px-4 py-2">
+                    <a class="btn btn-success text-white" id="add"><i class="fas fa-plus-circle"></i></a>
+                </div>
+
+                <div class="row px-4">
+                    <input type="submit" value="Registrar" class="btn btn-danger ml-auto" id="btn-registar-factura" disabled>
+                </div>
+            </form>
+        </div>
+    </section>
 {% endblock content %}

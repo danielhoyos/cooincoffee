@@ -1,12 +1,52 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.models import User
+from django.forms.formsets import formset_factory
 from django.contrib.auth.decorators import login_required
+from django.core import serializers
+from django.http import HttpResponse
+
 from .models import *
 from .forms import *
 
-# Create your views here.
+# Facturación
 @login_required(login_url = '/system/login/')
 def facturacion_view(request):
+    detalle_factura_formset = formset_factory(detalle_factura_form, max_num=10)
+
+    if request.user.is_superuser:
+        if request.method == 'POST':
+            form_factura = factura_form(request.POST)
+            form_detalle_factura = detalle_factura_formset(request.POST)
+
+            if form_factura.is_valid() and form_detalle_factura.is_valid():
+                # Factura
+                factura = form_factura.save(commit = False)
+                factura.usuario = request.user
+                factura.save()
+
+                # Detalle Factura
+                for detalle in form_detalle_factura.forms:
+                    detalle_factura = detalle.save(commit = False)
+                    detalle_factura.idFactura = factura
+                    detalle_factura.save()
+            
+                return redirect('facturacion')
+        else:
+            form_factura         = factura_form()
+            form_detalle_factura = detalle_factura_formset()
+    else:
+        return redirect('reportes')
+    
     return render(request, 'facturacion/index.html', locals())
+
+@login_required(login_url = '/system/login/')
+def facturacion_codigo_view(request):
+    factura = Factura.objects.filter(codigo = request.GET['codigo'])
+    data = serializers.serialize('json', factura)
+
+    return HttpResponse(data, content_type = 'application/json')
+# Fin Facturación
 
 # Cooperativa
 @login_required(login_url = '/system/login/')
