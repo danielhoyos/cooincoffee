@@ -1,0 +1,99 @@
+{% extends '../base_system.html' %}
+
+{% block title_head %}
+    Ventas | Cooincoffe    
+{% endblock title_head %}
+
+{% block content %}
+    <div class="mb-4">
+        <h2 class="mb-2 title_brown">
+            <i class="fas fa-file"></i> <u>Factura</u>
+        </h2>
+    </div>
+
+    <section class="factura p-3">
+        {% load static %}
+        {% load humanize %} 
+        <div class="container">
+            <!-- Información / Factura -->
+            <div class="row">
+                <div class="col-md-9 text-center">
+                    <h5>COOPERATIVA INTEGRAL AGRICOLA DE CAFÉ</h5>
+                    <img src="{% static 'img/logo-black.png' %}" alt="">
+                    <h6>
+                        NIT: 900.454.547-1<br>
+                        Torres del Río Bloque D Apto 105 / Tel: 8374769<br>
+                        contacto@cooincoffe.com
+                    </h6>
+                </div>
+                <div class="col-md-3 d-flex justify-content-center align-items-center">
+                    <div class="border border-dark">
+                        <div class="bg-cooincoffee p-2 text-center">
+                            Factura No.
+                        </div>
+                        <div class="text-center">
+                            {{ factura.codigo }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Datos Cooperativa -->
+            <div class="row px-4">
+                <table class="w-100">
+                    <tbody>
+                        <tr>
+                            <td><b>Nit:</b> {{ factura.cooperativa.nit }}</td>
+                            <td><b>Cooperativa: </b> {{ factura.cooperativa }}</td>
+                            <td><b>Fecha: </b> {{ factura.fechaRegistro }}</td>
+                        </tr>
+                        <tr>
+                            <td><b>Ciudad:</b> {{ factura.cooperativa.ciudad }}</td>
+                            <td><b>Dirección: </b> {{ factura.cooperativa.direccion }}<br></td>
+                            <td><b>Teléfono: </b> 
+                                {% if factura.cooperativa.telefono %}
+                                    {{ factura.cooperativa.telefono }}
+                                {% endif %} 
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Detalle Factura -->
+            <table class="table table-bordered mt-3">
+                <thead>
+                    <tr class="text-center">
+                        <th>Cantidad</th>
+                        <th>Unidad</th>
+                        <th>Tipo de Café</th>
+                        <th>Asociado</th>
+                        <th>Valor Unitario</th>
+                        <th>Sub Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for detalle_factura in detalles_factura %}
+                    <tr>
+                        <td>{{ detalle_factura.cantidad }}</td>
+                        <td>{{ detalle_factura.unidad }}</td>
+                        <td>{{ detalle_factura.idTipoCafe }}</td>
+                        <td>{{ detalle_factura.idAsociado }}</td>
+                        <td>$ {{ detalle_factura.valorUnitario|intcomma }}</td>
+                        <td>$ {{ detalle_factura.valorTotal|intcomma }}</td>
+                    </tr>
+                {% endfor %}
+                    <tr>
+                        <td colspan="4"></td>
+                        <td><b>TOTAL: </b></td>
+                        <td>$ {{ total|intcomma }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="row px-4">
+                <a href="{% url 'reportes' %}" class="btn btn-danger ml-auto">Volver</a>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

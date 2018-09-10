@@ -148,6 +148,21 @@ def tipo_cafe_eliminar_view(request, id_tipo_cafe):
     return redirect('/system/tipos_cafe/')
 # Fin Tipos Café
 
+# Reportes
 @login_required(login_url = '/system/login/')
 def reportes_view(request):
+    lista_facturas = Factura.objects.all()
+
     return render(request, 'facturacion/reportes.html', locals())
+
+@login_required(login_url = '/system/login/')
+def reportes_ver_view(request, id_factura):
+    factura = Factura.objects.get(id = id_factura)
+    detalles_factura = DetalleFactura.objects.filter(idFactura = id_factura)
+    total = 0
+
+    for detalle_factura in detalles_factura:
+        total += detalle_factura.valorTotal
+
+    return render(request, 'facturacion/reportes_ver.html', locals())
+# Fin Reportes

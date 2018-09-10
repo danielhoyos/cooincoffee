@@ -16,4 +16,5 @@ urlpatterns = [
     path('tipos_cafe/eliminar/<int:id_tipo_cafe>/', tipo_cafe_eliminar_view, name = "tipo_cafe_eliminar"),
     
     path('reportes/', reportes_view, name = "reportes"),
+    path('reportes/<int:id_factura>/', reportes_ver_view, name = "reportes_ver"),
 ]

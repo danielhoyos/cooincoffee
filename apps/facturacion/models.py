@@ -44,3 +44,7 @@ class DetalleFactura(models.Model):
     idTipoCafe  = models.ForeignKey(TipoCafe, on_delete = models.PROTECT)
     idAsociado  = models.ForeignKey(Asociado, on_delete = models.PROTECT)
     idFactura   = models.ForeignKey(Factura, on_delete = models.PROTECT)
+
+    def valorUnitario(self):
+        valor = self.valorTotal // self.cantidad
+        return valor

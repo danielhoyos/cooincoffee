@@ -11,18 +11,22 @@
                 <i class="fas fa-users"></i> <u>Tipos de Cafe</u>
             </h2>
     
-            <!-- Agregar Tipo Cafe -->
-            <button type="button" class="btn btn-danger ml-auto" data-toggle="modal" data-target="#agregar-tipo-cafe">
-                <i class="fas fa-plus-circle"></i> Agregar
-            </button>
+            {% if request.user.is_superuser %}
+                <!-- Agregar Tipo Cafe -->
+                <button type="button" class="btn btn-danger ml-auto" data-toggle="modal" data-target="#agregar-tipo-cafe">
+                    <i class="fas fa-plus-circle"></i> Agregar
+                </button>
+            {% endif %}
         </div>
     </div>
 
-    <table class="table table-striped border">
+    <table class="table table-striped border" id="tabla-tipos-cafe">
         <thead class="bg-cooincoffee">
             <tr>
                 <th scope="col-md-10">Nombre</th>
-                <th scope="col-md-2"></th>
+                {% if request.user.is_superuser %}
+                    <th scope="col-md-2"></th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -31,10 +35,12 @@
                     <td>
                         {{ tipo_cafe.nombre }}
                     </td>
-                    <td class="table-bordered-none text-right">
-                        <a class="btn-sm btn-info text-white" href="{% url 'tipo_cafe_editar' id_tipo_cafe=tipo_cafe.id %}"><i class="far fa-file-alt"></i></a>
-                        <a class="btn-sm btn-danger text-white" href="{% url 'tipo_cafe_eliminar' id_tipo_cafe=tipo_cafe.id %}"><i class="fas fa-trash"></i></a>
-                    </td>
+                    {% if request.user.is_superuser %}
+                        <td class="table-bordered-none text-right">
+                            <a class="btn-sm btn-info text-white" href="{% url 'tipo_cafe_editar' id_tipo_cafe=tipo_cafe.id %}"><i class="far fa-file-alt"></i></a>
+                            <a class="btn-sm btn-danger text-white" href="{% url 'tipo_cafe_eliminar' id_tipo_cafe=tipo_cafe.id %}"><i class="fas fa-trash"></i></a>
+                        </td>
+                    {% endif %}
                 </tr>
             {% endfor %}
         </tbody>
