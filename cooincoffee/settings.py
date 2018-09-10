@@ -25,7 +25,7 @@ SECRET_KEY = ')#2(jopck9k8#ywoo!)%$&$dgvje3t9&8&ov@1s3le$7@ik@+e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['cooincoffee.herokuapp.com']
 
 
 # Application definition
@@ -84,10 +84,10 @@ WSGI_APPLICATION = 'cooincoffee.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE':   'django.db.backends.postgresql',
-        'NAME':     'cooincoffee',
-        'USER':     'postgres',
-        'PASSWORD': 'postgres',
-        'HOST':     '127.0.0.1',
+        'NAME':     'd6f05onq25dm79',
+        'USER':     'umhubdwoqcwkuh',
+        'PASSWORD': 'bbb9a6d8f3d60b0df5840f13d119d454dfbb48aa756baac1dc1a1324ae37d141',
+        'HOST':     'ec2-107-21-233-72.compute-1.amazonaws.com',
         'PORT':     '5432'
     }
 }
