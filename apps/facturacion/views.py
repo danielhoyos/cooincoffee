@@ -31,7 +31,7 @@ def facturacion_view(request):
                     detalle_factura.idFactura = factura
                     detalle_factura.save()
             
-                return redirect('facturacion')
+                return redirect('reportes_ver', id_factura = factura.id)
         else:
             form_factura         = factura_form()
             form_detalle_factura = detalle_factura_formset()
@@ -162,7 +162,7 @@ def reportes_ver_view(request, id_factura):
     total = 0
 
     for detalle_factura in detalles_factura:
-        total += detalle_factura.valorTotal
+        total += detalle_factura.total
 
     return render(request, 'facturacion/reportes_ver.html', locals())
 # Fin Reportes
