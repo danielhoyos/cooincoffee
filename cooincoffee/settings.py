@@ -25,7 +25,7 @@ SECRET_KEY = ')#2(jopck9k8#ywoo!)%$&$dgvje3t9&8&ov@1s3le$7@ik@+e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['cooincoffee.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['cooincoffee.herokuapp.com']
 
 
 # Application definition
