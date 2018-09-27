@@ -40,11 +40,11 @@ class Factura(models.Model):
 class DetalleFactura(models.Model):
     cantidad    = models.IntegerField()
     unidad      = models.CharField(max_length = 10, default = 'Kilo')
-    valorTotal  = models.IntegerField()
+    total       = models.IntegerField()
     idTipoCafe  = models.ForeignKey(TipoCafe, on_delete = models.PROTECT)
     idAsociado  = models.ForeignKey(Asociado, on_delete = models.PROTECT)
     idFactura   = models.ForeignKey(Factura, on_delete = models.PROTECT)
 
     def valorUnitario(self):
-        valor = self.valorTotal // self.cantidad
+        valor = self.total // self.cantidad
         return valor

@@ -60,8 +60,8 @@ class detalle_factura_form(forms.ModelForm):
         exclude = ['idFactura']
         widgets = {
             'cantidad'  : forms.NumberInput(attrs = { 'class' : 'form-control' }),
-            'unidad'    : forms.TextInput(attrs = { 'class' : 'form-control' }),
-            'valorTotal': forms.NumberInput(attrs = { 'class' : 'form-control' }),
+            'unidad'    : forms.TextInput(attrs = { 'class' : 'form-control', 'readonly' : 'true'}),
+            'total': forms.NumberInput(attrs = { 'class' : 'form-control' }),
             'idTipoCafe': forms.Select(attrs = { 'class' : 'form-control' }),
             'idAsociado': forms.Select(attrs = { 'class' : 'form-control' })        
         }

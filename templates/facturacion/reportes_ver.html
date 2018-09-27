@@ -80,7 +80,7 @@
                         <td>{{ detalle_factura.idTipoCafe }}</td>
                         <td>{{ detalle_factura.idAsociado }}</td>
                         <td>$ {{ detalle_factura.valorUnitario|intcomma }}</td>
-                        <td>$ {{ detalle_factura.valorTotal|intcomma }}</td>
+                        <td>$ {{ detalle_factura.total|intcomma }}</td>
                     </tr>
                 {% endfor %}
                     <tr>

@@ -3,8 +3,7 @@ $(document).ready(function() {
     function updateElementIndex(el, prefix, ndx) {
         var id_regex = new RegExp('(' + prefix + '-\\d+-)');
         var replacement = prefix + '-' + ndx + '-';
-        if ($(el).attr("for")) $(el).attr("for", $(el).attr("for").replace(id_regex,
-     replacement));
+        if ($(el).attr("for")) $(el).attr("for", $(el).attr("for").replace(id_regex, replacement));
         if (el.id) el.id = el.id.replace(id_regex, replacement);
         if (el.name) el.name = el.name.replace(id_regex, replacement);
     }
@@ -41,20 +40,20 @@ $(document).ready(function() {
 
         if (formCount < 10) {
           // Clone a form (without event handlers) from the first form
-          var row = $(".detalle:first").clone(false).get(0);
+          var row = $(".detalle:last").clone(false).get(0);
           // Insert it after the last form
           $(row).removeAttr('id').insertAfter(".detalle:last");
+          console.log(row);
           // Remove the bits we don't want in the new row/form
           // e.g. error messages
           $(".errorlist", row).remove();
           $(row).children().removeClass('error');
           
-          // Relabel/rename all the relevant bits
-          $(row).children().children().each(function() {
+          // Relabel/rename all the relevant bits 
+        $(".detalle:last :input").each(function() {
             updateElementIndex(this, prefix, formCount);
-            if ( $(this).attr('type') == 'text' )
-              $(this).val('');
-          });
+            if ( $(this).attr('type') == 'number' ) $(this).val('');
+        });
           
           // Add an event handler for the delete item/form link 
           $(row).find('.delete').click(function() {
