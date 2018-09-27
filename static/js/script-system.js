@@ -25,7 +25,7 @@ $(document).ready(function() {
                 var i = 0;
                 // Go through the forms and set their indices, names and IDs
                 for (formCount = forms.length; i < formCount; i++) {
-                    $(forms.get(i)).children().children().each(function() {
+                    $(forms.get(i)).find(':input').each(function() {
                         updateElementIndex(this, prefix, i);
                     });
                 }
@@ -43,17 +43,16 @@ $(document).ready(function() {
           var row = $(".detalle:last").clone(false).get(0);
           // Insert it after the last form
           $(row).removeAttr('id').insertAfter(".detalle:last");
-          console.log(row);
           // Remove the bits we don't want in the new row/form
           // e.g. error messages
           $(".errorlist", row).remove();
           $(row).children().removeClass('error');
           
           // Relabel/rename all the relevant bits 
-        $(".detalle:last :input").each(function() {
-            updateElementIndex(this, prefix, formCount);
-            if ( $(this).attr('type') == 'number' ) $(this).val('');
-        });
+            $(".detalle:last :input").each(function() {
+                updateElementIndex(this, prefix, formCount);
+                if ( $(this).attr('type') == 'number' ) $(this).val('');
+            });
           
           // Add an event handler for the delete item/form link 
           $(row).find('.delete').click(function() {
