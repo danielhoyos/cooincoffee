@@ -84,10 +84,10 @@ WSGI_APPLICATION = 'cooincoffee.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE':   'django.db.backends.postgresql',
-        'NAME':     'd6f05onq25dm79',
-        'USER':     'umhubdwoqcwkuh',
-        'PASSWORD': 'bbb9a6d8f3d60b0df5840f13d119d454dfbb48aa756baac1dc1a1324ae37d141',
-        'HOST':     'ec2-107-21-233-72.compute-1.amazonaws.com',
+        'NAME':     'dfbpirhg4o8rjb',
+        'USER':     'tcelozmawvzxbn',
+        'PASSWORD': '0a19feff7552b596e4583f13ffab826a1e836ed1d611c22be4875621825667af',
+        'HOST':     'ec2-23-23-80-20.compute-1.amazonaws.com',
         'PORT':     '5432'
     }
 }
