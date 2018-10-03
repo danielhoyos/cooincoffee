@@ -64,7 +64,11 @@
                                 <div class="line-item-nav"></div>
                             </li>
                             <li>
-                                <a href="{% url 'reportes' %}" class="navbar-brand"><i class="fas fa-file-invoice-dollar"></i> Ventas</a>
+                                <a href="{% url 'ventas' %}" class="navbar-brand"><i class="fas fa-file-invoice-dollar"></i> Ventas</a>
+                                <div class="line-item-nav"></div>
+                            </li>
+                            <li>
+                                <a href="{% url 'reportes' %}" class="navbar-brand"><i class="fas fa-file-invoice-dollar"></i> Reportes</a>
                                 <div class="line-item-nav"></div>
                             </li>
                             <li>
@@ -89,6 +93,9 @@
     <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
     <script src="{% static 'js/script-system.js' %}"></script>
+    {% block scripts %}
+    {% endblock scripts %}  
 </body>
 </html>

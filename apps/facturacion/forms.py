@@ -43,25 +43,25 @@ class agregar_tipo_cafe_form(forms.ModelForm):
 class factura_form(forms.ModelForm):
     class Meta: 
         model   = Factura
-        fields  = ('codigo', 'cooperativa', 'fechaRegistro')
+        fields  = ('codigo', 'cooperativa', 'fecha_registro')
         widgets = {
             'codigo' : forms.TextInput(attrs = { 'class' : 'text-center', 'size' : '10', 'placeholder' : 'A1-000', 'id' : 'codigo-factura'}),
             'cooperativa' : forms.Select(attrs = { 'class' : 'form-control' }),
-            'fechaRegistro' : forms.TextInput(attrs = { 'class' : 'form-control', 'type' : 'date'})
+            'fecha_registro' : forms.TextInput(attrs = { 'class' : 'form-control', 'type' : 'date'})
         }
         labels = {
-            'fechaRegistro' : 'Fecha'
+            'fecha_registro' : 'Fecha'
         }
 
 class detalle_factura_form(forms.ModelForm):
     class Meta:
         model   = DetalleFactura
         fields  = '__all__'
-        exclude = ['idFactura']
+        exclude = ['factura']
         widgets = {
             'cantidad'  : forms.NumberInput(attrs = { 'class' : 'form-control' }),
             'unidad'    : forms.TextInput(attrs = { 'class' : 'form-control', 'readonly' : 'true'}),
-            'total': forms.NumberInput(attrs = { 'class' : 'form-control' }),
-            'idTipoCafe': forms.Select(attrs = { 'class' : 'form-control' }),
-            'idAsociado': forms.Select(attrs = { 'class' : 'form-control' })        
+            'total': forms.NumberInput(attrs = { 'class' : 'form-control total_detalle_factura' }),
+            'tipo_cafe': forms.Select(attrs = { 'class' : 'form-control' }),
+            'asociado': forms.Select(attrs = { 'class' : 'form-control' })        
         }

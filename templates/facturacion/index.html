@@ -53,7 +53,7 @@
                         <div class="form-group row">
                             <label for="staticEmail" class="col-sm-2 col-form-label">{{ form_factura.fechaRegistro.label }}: </label>
                             <div class="col-sm-10">
-                                {{ form_factura.fechaRegistro }}
+                                {{ form_factura.fecha_registro }}
                             </div>
                         </div>
                     </div>
@@ -77,8 +77,8 @@
                             <tr class="detalle">
                                 <td>{{ detalle_factura.cantidad }}</td>
                                 <td>{{ detalle_factura.unidad }}</td>
-                                <td>{{ detalle_factura.idTipoCafe }}</td>
-                                <td>{{ detalle_factura.idAsociado }}</td>
+                                <td>{{ detalle_factura.tipo_cafe }}</td>
+                                <td>{{ detalle_factura.asociado }}</td>
                                 <td>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
