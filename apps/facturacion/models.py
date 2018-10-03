@@ -23,7 +23,7 @@ class Asociado(models.Model):
     estado      = models.BooleanField(default = True)
 
     def __str__ (self):
-        return self.nombre
+        return self.nombre + ' ' + self.apellido 
 
 class TipoCafe(models.Model):
     nombre = models.CharField(max_length = 50, unique = True)
@@ -33,7 +33,7 @@ class TipoCafe(models.Model):
 
 class Factura(models.Model):
     codigo        = models.CharField(max_length = 10, unique = True)
-    fechaRegistro = models.DateField()
+    fecha_registro = models.DateField()
     cooperativa   = models.ForeignKey(Cooperativa, on_delete = models.PROTECT)
     usuario       = models.ForeignKey(User, on_delete = models.PROTECT)
 
@@ -41,9 +41,9 @@ class DetalleFactura(models.Model):
     cantidad    = models.IntegerField()
     unidad      = models.CharField(max_length = 10, default = 'Kilo')
     total       = models.IntegerField()
-    idTipoCafe  = models.ForeignKey(TipoCafe, on_delete = models.PROTECT)
-    idAsociado  = models.ForeignKey(Asociado, on_delete = models.PROTECT)
-    idFactura   = models.ForeignKey(Factura, on_delete = models.PROTECT)
+    tipo_cafe  = models.ForeignKey(TipoCafe, on_delete = models.PROTECT)
+    asociado  = models.ForeignKey(Asociado, on_delete = models.PROTECT)
+    factura   = models.ForeignKey(Factura, on_delete = models.PROTECT)
 
     def valorUnitario(self):
         valor = self.total // self.cantidad

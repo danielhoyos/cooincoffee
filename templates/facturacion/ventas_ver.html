@@ -45,7 +45,7 @@
                         <tr>
                             <td><b>Nit:</b> {{ factura.cooperativa.nit }}</td>
                             <td><b>Cooperativa: </b> {{ factura.cooperativa }}</td>
-                            <td><b>Fecha: </b> {{ factura.fechaRegistro }}</td>
+                            <td><b>Fecha: </b> {{ factura.fecha_registro }}</td>
                         </tr>
                         <tr>
                             <td><b>Ciudad:</b> {{ factura.cooperativa.ciudad }}</td>
@@ -77,8 +77,8 @@
                     <tr>
                         <td>{{ detalle_factura.cantidad }}</td>
                         <td>{{ detalle_factura.unidad }}</td>
-                        <td>{{ detalle_factura.idTipoCafe }}</td>
-                        <td>{{ detalle_factura.idAsociado }}</td>
+                        <td>{{ detalle_factura.tipo_cafe }}</td>
+                        <td>{{ detalle_factura.asociado }}</td>
                         <td>$ {{ detalle_factura.valorUnitario|intcomma }}</td>
                         <td>$ {{ detalle_factura.total|intcomma }}</td>
                     </tr>
@@ -92,7 +92,7 @@
             </table>
 
             <div class="row px-4">
-                <a href="{% url 'reportes' %}" class="btn btn-danger ml-auto">Volver</a>
+                <a href="{% url 'ventas' %}" class="btn btn-danger ml-auto">Volver</a>
             </div>
         </div>
     </section>

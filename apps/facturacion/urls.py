@@ -15,6 +15,12 @@ urlpatterns = [
     path('tipos_cafe/<int:id_tipo_cafe>/', tipo_cafe_editar_view, name = "tipo_cafe_editar"),
     path('tipos_cafe/eliminar/<int:id_tipo_cafe>/', tipo_cafe_eliminar_view, name = "tipo_cafe_eliminar"),
     
+    path('ventas/', ventas_view, name = "ventas"),
+    path('ventas/<int:id_factura>/', ventas_ver_view, name = "ventas_ver"),
+
     path('reportes/', reportes_view, name = "reportes"),
-    path('reportes/<int:id_factura>/', reportes_ver_view, name = "reportes_ver"),
+    path('reporte_data/', reporte_data, name = "reporte_data"),
+    path('reporte_cooperativas/', reporte_cooperativas, name = "reporte_cooperativas"),
+    path('reporte_kilos/', reporte_kilos, name = "reporte_kilos"),
+    path('reporte_tipos/', reporte_tipos, name = "reporte_tipos"),
 ]

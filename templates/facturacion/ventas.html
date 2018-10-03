@@ -1,0 +1,34 @@
+{% extends '../base_system.html' %}
+
+{% block title_head %}
+    Ventas | Cooincoffe    
+{% endblock title_head %}
+
+{% block content %}
+    <div class="mb-4">
+        <h2 class="mb-2 title_brown">
+            <i class="fas fa-file-invoice-dollar"></i> <u>Ventas</u>
+        </h2>
+    </div>
+
+    <table class="table border table-striped" id="tabla-facturas">
+        <thead class="bg-cooincoffee">
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Cooperativa</th>
+                <th scope="col">Fecha</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for factura in lista_facturas %}
+                <tr>
+                    <td>{{ factura.codigo }}</td>
+                    <td>{{ factura.cooperativa }}</td>
+                    <td>{{ factura.fecha_registro }}</td>
+                    <td><a class="btn-sm btn-info text-white" href="{% url 'ventas_ver' id_factura=factura.id %}"><i class="far fa-file-alt"></i></a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content %}
