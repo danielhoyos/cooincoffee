@@ -261,7 +261,7 @@ $(document).ready(function() {
     })
 
     // Buscadores
-    $("#tabla-facturas, #tabla-cooperativas, #tabla-asociados, #tabla-tipos-cafe").DataTable({
+    $("#tabla-facturas, #tabla-cooperativas, #tabla-asociados, #tabla-tipos-cafe, #tabla-usuarios").DataTable({
         "language": {
             "decimal": ",",
             "thousands": ".",

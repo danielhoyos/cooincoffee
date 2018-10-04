@@ -41,6 +41,15 @@
                         {% comment %} <img src="/media/usuarios/{{ user.img }}" class="logo" alt="Logo Cooincoffe" title="Logo Cooincoffe"> {% endcomment %}
                         
                         <p class="m-auto">{{ request.user.get_full_name }}<p>
+                        <small>
+                            {% if request.user.is_superuser and request.user.is_staff %}
+                                Jefe
+                            {% elif request.user.is_superuser %}
+                                Secretaria
+                            {% elif request.user.is_staff %}
+                                Contador (a)
+                            {% endif %}
+                        </small>
                     </div>
                     <hr class="bg-light">
                     <nav>
@@ -56,7 +65,7 @@
                                 <div class="line-item-nav"></div>
                             </li>
                             <li>
-                                <a href="{% url 'asociados' %}" class="navbar-brand"><i class="fas fa-users"></i> Asociados</a>
+                                <a href="{% url 'asociados' %}" class="navbar-brand"><i class="fas fa-handshake"></i> Asociados</a>
                                 <div class="line-item-nav"></div>
                             </li>
                             <li>
@@ -74,6 +83,12 @@
                                 <a href="{% url 'perfil' %}" class="navbar-brand"><i class="fas fa-user"></i> Perfil</a>
                                 <div class="line-item-nav"></div>
                             </li>
+                            {% if request.user.is_superuser and request.user.is_staff %}
+                                <li>
+                                    <a href="{% url 'usuarios' %}" class="navbar-brand"> <i class="fas fa-users"></i> Usuarios</a>
+                                    <div class="line-item-nav"></div>
+                                </li>
+                            {% endif %}
                             <li>
                                 <a href="{% url 'logout' %}" class="navbar-brand"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
                                 <div class="line-item-nav"></div>    
