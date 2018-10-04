@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import update_session_auth_hash
 
 from .forms import *
 
@@ -29,7 +31,37 @@ def login_view(request):
 
 @login_required(login_url = '/system/login/')
 def perfil_view(request):
+    if request.method == 'POST':
+        formulario = profile_form(request.POST, instance = request.user)
+        
+        if formulario.is_valid():
+            formulario.save()
+    
+    else:
+        formulario = profile_form(instance = request.user)
+
     return render(request, 'users/perfil.html', locals())
+
+@login_required(login_url = '/system/login/')
+def change_password_view(request):
+    if request.method == 'POST':
+        formulario_password = change_password_form(request.POST)   
+
+        if formulario_password.is_valid():
+            passwordold = formulario_password.cleaned_data['passwordold']
+            passwordnew1 = formulario_password.cleaned_data['passwordnew1']
+            passwordnew2 = formulario_password.cleaned_data['passwordnew2']
+
+            if request.user.check_password(passwordold):
+                usuario = User.objects.get(username = request.user)
+                usuario.set_password(passwordnew1)
+                usuario.save()
+                update_session_auth_hash(request, usuario)
+                return redirect('/system/perfil/')
+    else:
+        formulario_password = change_password_form()
+    
+    return render(request, 'users/change_password.html', locals())
 
 @login_required(login_url = '/system/login/')
 def logout_view(request):
