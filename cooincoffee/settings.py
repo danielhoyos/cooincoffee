@@ -25,7 +25,7 @@ SECRET_KEY = ')#2(jopck9k8#ywoo!)%$&$dgvje3t9&8&ov@1s3le$7@ik@+e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['cooincoffee.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -84,10 +84,10 @@ WSGI_APPLICATION = 'cooincoffee.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE':   'django.db.backends.postgresql',
-        'NAME':     'cooincoffee',
-        'USER':     'postgres',
-        'PASSWORD': 'postgres',
-        'HOST':     'localhost',
+        'NAME':     'dfbpirhg4o8rjb',
+        'USER':     'tcelozmawvzxbn',
+        'PASSWORD': '0a19feff7552b596e4583f13ffab826a1e836ed1d611c22be4875621825667af',
+        'HOST':     'ec2-23-23-80-20.compute-1.amazonaws.com',
         'PORT':     '5432'
     }
 }
@@ -130,10 +130,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-  os.path.join(BASE_DIR, "static"),
-]
-#STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 MEDIA_ROOT = 'media'
 MEDIA_URL = '/media/'
