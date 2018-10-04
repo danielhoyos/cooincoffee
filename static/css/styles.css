@@ -48,7 +48,7 @@ section{
 
 h6 {
     letter-spacing: 2px;
-    color: #5b3924;
+    color: #443426;
     font-size: 12px;
 }
 
@@ -63,7 +63,7 @@ h6 {
 }
 
 .header-bg{
-    background-color: rgba(20, 2, 0, 0.8);
+    background-color: rgba(68,52,38, 0.9);
 }
 
 /* 3. Banner */
@@ -125,7 +125,7 @@ h6 {
 }
 
 .aliados{
-    background-color: #b68834;
+    background-color: #cc9225;
     color: #fff;
 }
 
@@ -146,7 +146,7 @@ h6 {
 }
 
 .btn-enviar{
-    background-color: #b68834;
+    background-color: #cc9225;
     color: #fff;
     box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
 }
