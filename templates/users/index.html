@@ -1,0 +1,94 @@
+{% extends '../base_system.html' %}
+
+{% block title_head %}
+    Usuarios | Cooincoffe    
+{% endblock title_head %}
+
+{% block content %}
+    <div class="mb-4">
+        <div class="row px-3">
+            <h2 class="mb-2 title_brown">
+                <i class="fas fa-users"></i> <u>Usuarios</u>
+            </h2>
+    
+            <!-- Agregar usuario -->
+            {% if request.user.is_superuser %}
+                <button type="button" class="btn btn-danger ml-auto" data-toggle="modal" data-target="#agregar-usuario">
+                    <i class="fas fa-plus-circle"></i> Agregar
+                </button>
+            {% endif %}
+        </div>
+    </div>
+
+    <table class="table border table-striped" id=tabla-usuarios>
+            <thead class="bg-cooincoffee">
+              <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Usuario</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Rol</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for usuario in usuarios %}
+                    <tr>
+                        <td>{{ usuario.get_full_name }}</td>
+                        <td>{{ usuario.username }}</td>
+                        <td>{{ usuario.email }}</td>
+                        <td>
+                            {% if usuario.is_active %}
+                                Activo (a)
+                            {% else %}
+                                Inactivo (a)
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if usuario.is_superuser and usuario.is_staff %}
+                                Jefe
+                            {% elif usuario.is_superuser %}
+                                Secretaria
+                            {% elif usuario.is_staff %}
+                                Contador (a)
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            <a class="btn-sm btn-info text-white" href="{% url 'usuario_editar' id_usuario=usuario.id %}"><i class="far fa-file-alt"></i></a>
+                        </td> 
+                    </tr>
+                {% endfor %}
+            </tbody>
+    </table>
+
+    <!-- Modal Agregar Usuairo-->
+    <div class="modal fade" id="agregar-usuario" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title ml-auto">Agregar Usuario</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        {% for field in form_agregar_usuario %}
+                            <div class="form-group row">
+                                <label for="{{ field.id_for_label }}" class="col-sm-3 col-form-label">{{ field.label }}:</label>
+                                <div class="col-sm-9">
+                                    {{ field }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <div class="text-right">
+                            <input class="btn btn-danger" type="submit" value="Registrar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

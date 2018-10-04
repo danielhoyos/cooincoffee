@@ -64,6 +64,72 @@ def change_password_view(request):
     return render(request, 'users/change_password.html', locals())
 
 @login_required(login_url = '/system/login/')
+def usuarios_view(request):
+    usuarios = User.objects.all().exclude(username = request.user)
+
+    if request.method == 'POST':
+        form_agregar_usuario = agregar_usuario_form(request.POST)
+        
+        if form_agregar_usuario.is_valid():
+            nombre      = form_agregar_usuario.cleaned_data['first_name']
+            apellido    = form_agregar_usuario.cleaned_data['last_name']
+            usuario     = form_agregar_usuario.cleaned_data['username']
+            email       = form_agregar_usuario.cleaned_data['email']
+            password1   = form_agregar_usuario.cleaned_data['password1']
+            password2   = form_agregar_usuario.cleaned_data['password2']
+            rol         = form_agregar_usuario.cleaned_data['rol']
+
+            u = User.objects.create_user(first_name = nombre, last_name = apellido, username = usuario, email = email, password = password1)
+            
+            if rol == 'jefe':
+                u.is_superuser = True
+                u.is_staff = True
+            elif rol == 'secretaria':
+                u.is_superuser = True
+            elif rol == 'contador':
+                u.is_staff = True
+
+            u.save()
+
+            return redirect('/system/usuarios/')
+    else:
+        form_agregar_usuario = agregar_usuario_form()
+
+    return render(request, 'users/index.html', locals())
+
+@login_required(login_url = '/system/login/')
+def usuario_editar_view(request, id_usuario):
+    if request.user.is_superuser and request.user.is_staff:
+        u = User.objects.get(id = id_usuario)
+
+        if request.method == 'POST':
+            form_editar_usuario = update_usuario_form(request.POST)
+            if form_editar_usuario.is_valid():
+                estado  = form_editar_usuario.cleaned_data['estado']
+                rol     = form_editar_usuario.cleaned_data['rol']
+
+                u.is_active = estado;
+                u.is_superuser = False
+                u.is_staff = False
+
+                if rol == 'jefe':
+                    u.is_superuser = True
+                    u.is_staff = True
+                elif rol == 'secretaria':
+                    u.is_superuser = True
+                elif rol == 'contador':
+                    u.is_staff = True
+
+                u.save()
+                return redirect('/system/usuarios/')
+        else:
+            form_editar_usuario = update_usuario_form()   
+
+        return render(request, 'users/usuario_editar.html', locals())
+    else:
+        return redirect('cooperativas')
+
+@login_required(login_url = '/system/login/')
 def logout_view(request):
     logout(request)
     return redirect('/system/')
